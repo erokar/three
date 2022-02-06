@@ -1,21 +1,23 @@
 <script lang="ts">
 	import supabase from '$lib/db'
-	import { session } from '$app/stores'
+	import { goto } from '$app/navigation'
 
 	let email: string
-	let password: string
 
-	async function signUp() {
+	async function signIn() {
 		const {
 			user,
 			session: userSession,
 			error
-		} = await supabase.auth.signUp({
-			email,
-			password
+		} = await supabase.auth.signIn({
+			email
 		})
-		$session = userSession
-		console.log($session)
+		if (error) {
+			alert(error.message)
+		}
+		if (userSession) {
+			goto('/things')
+		}
 	}
 </script>
 
@@ -27,13 +29,13 @@
 	>
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<h2>Sign Up</h2>
+				<h2>Sign In</h2>
 			</div>
 
 			<div style="padding-top:30px" class="panel-body">
 				<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12" />
 
-				<form id="loginform" class="form-horizontal" role="form" on:click|preventDefault>
+				<form id="loginform" class="form-horizontal" role="form" on:submit|preventDefault={signIn}>
 					<div style="margin-bottom: 25px" class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-user" /></span>
 						<input
@@ -46,23 +48,11 @@
 						/>
 					</div>
 
-					<div style="margin-bottom: 25px" class="input-group">
-						<span class="input-group-addon"><i class="glyphicon glyphicon-lock" /></span>
-						<input
-							bind:value={password}
-							id="login-password"
-							type="password"
-							class="form-control"
-							name="password"
-							placeholder="Password"
-						/>
-					</div>
-
 					<div style="margin-top:10px" class="form-group">
 						<!-- Button -->
 
 						<div class="col-sm-12 controls">
-							<button on:click={signUp} id="btn-login" class="btn btn-success">Sign Up </button>
+							<button id="btn-login" class="btn btn-success">Sign In </button>
 						</div>
 					</div>
 				</form>
@@ -70,5 +60,3 @@
 		</div>
 	</div>
 </div>
-
-<pre>{JSON.stringify($session, null, 2)}</pre>
