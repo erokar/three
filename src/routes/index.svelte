@@ -5,7 +5,7 @@
 			<div class="col-lg-6">
 				<!-- Mashead text and app badges-->
 				<div class="mb-5 mb-lg-0 text-center text-lg-start">
-					<h1 class="display-1 lh-1 mb-3">Three good tings</h1>
+					<h1 class="display-1 lh-1 mb-3">Three good tings. Every day.</h1>
 					<p class="lead fw-normal text-muted mb-5">
 						Copytext about research on this, simplicity etc.
 					</p>

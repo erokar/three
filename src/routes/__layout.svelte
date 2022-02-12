@@ -9,7 +9,6 @@
 		$session = supabase.auth.session()
 		supabase.auth.onAuthStateChange((_, supaSession) => {
 			$session = supaSession
-			console.log('settign session', $session)
 		})
 	}
 

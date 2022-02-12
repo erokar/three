@@ -70,5 +70,3 @@
 		</div>
 	</div>
 </div>
-
-<pre>{JSON.stringify($session, null, 2)}</pre>
