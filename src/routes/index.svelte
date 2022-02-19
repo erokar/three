@@ -1,11 +1,10 @@
 <script>
 	import { onMount } from 'svelte'
 	import { fade } from 'svelte/transition'
-	import Layout from './__layout.svelte'
 
-	let steps = [1]
+	let steps = []
 
-	//onMount(() => (firstThing = true))
+	onMount(() => (steps = [1]))
 
 	function typewriter(node, { speed = 1 }) {
 		const valid = node.childNodes.length === 1 && node.childNodes[0].nodeType === Node.TEXT_NODE
