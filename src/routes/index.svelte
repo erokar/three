@@ -1,13 +1,11 @@
 <script>
 	import { onMount } from 'svelte'
 	import { fade } from 'svelte/transition'
+	import Layout from './__layout.svelte'
 
-	let firstThing = false
-	let secondThing = false
-	let thirdThing = false
-	let finished = false
+	let steps = [1]
 
-	onMount(() => (firstThing = true))
+	//onMount(() => (firstThing = true))
 
 	function typewriter(node, { speed = 1 }) {
 		const valid = node.childNodes.length === 1 && node.childNodes[0].nodeType === Node.TEXT_NODE
@@ -38,28 +36,34 @@
 			<div class="col-lg-6 ml-4 mt-5  pl-5 ml-5">
 				<!-- Masthead device mockup feature-->
 
-				{#if firstThing}
+				{#if steps.includes(1)}
 					<h3 class="pt-8">
-						1. <span in:typewriter on:introend={() => setTimeout(() => (secondThing = true), 1200)}
+						1. <span
+							in:typewriter
+							on:introend={() => setTimeout(() => (steps = [...steps, 2]), 1200)}
 							>Had a good laugh with Sue when we met for coffee this morning.</span
 						>
 					</h3>
 				{/if}
-				{#if secondThing}
+				{#if steps.includes(2)}
 					<h3>
-						2. <span in:typewriter on:introend={() => setTimeout(() => (thirdThing = true), 1200)}
+						2. <span
+							in:typewriter
+							on:introend={() => setTimeout(() => (steps = [...steps, 3]), 1200)}
 							>Got a solid bit of writing done today.</span
 						>
 					</h3>
 				{/if}
-				{#if thirdThing}
+				{#if steps.includes(3)}
 					<h3>
-						3. <span in:typewriter on:introend={() => setTimeout(() => (finished = true), 400)}
+						3. <span
+							in:typewriter
+							on:introend={() => setTimeout(() => (steps = [...steps, 4]), 400)}
 							>The sunset was beautiful, pink and crazy.</span
 						>
 					</h3>
 				{/if}
-				{#if finished}
+				{#if steps.includes(4)}
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="60"
