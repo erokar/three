@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte'
 	import { fade } from 'svelte/transition'
 
-	let steps
+	let steps = [1]
 
 	onMount(() => (steps = [1]))
 
