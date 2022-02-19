@@ -40,12 +40,21 @@
 				{#if $session}
 					<li class="nav-item"><a class="nav-link me-lg-3" href="/things">Good things</a></li>
 				{/if}
-				<li class="nav-item">
-					<a class="nav-link me-lg-3" href="">{$session ? $session.user?.email : ''}</a>
-				</li>
 				{#if $session}
-					<li class="nav-item">
-						<a on:click={signOut} class="nav-link me-lg-3" href="">Sign out</a>
+					<li class="nav-item dropdown">
+						<a
+							class="nav-link dropdown-toggle"
+							href="#"
+							id="navbarDropdown"
+							role="button"
+							data-bs-toggle="dropdown"
+							aria-expanded="false"
+						>
+							{$session.user?.email}
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a on:click={signOut} class="dropdown-item" href="">Sign out</a></li>
+						</ul>
 					</li>
 				{:else}
 					<li class="nav-item">
@@ -56,15 +65,6 @@
 					</li>
 				{/if}
 			</ul>
-			<button
-				class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0"
-				data-bs-toggle="modal"
-				data-bs-target="#feedbackModal"
-			>
-				<span class="d-flex align-items-center">
-					<span class="small">Send Feedback</span>
-				</span>
-			</button>
 		</div>
 	</div>
 </nav>
