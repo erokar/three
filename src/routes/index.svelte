@@ -14,7 +14,7 @@
 		}
 
 		const text = node.textContent
-		const duration = text.length / (speed * 0.01)
+		const duration = text.length / (speed * 0.02)
 
 		return {
 			duration,
@@ -32,7 +32,7 @@
 			<div class="col-lg-12">
 				<h1 class="display-1 lh-1 mb-3">Three good tings. <br /> Every day.</h1>
 			</div>
-			<div class="col-lg-6 ml-4 mt-5  pl-5 ml-5">
+			<div class="col-lg-6 ml-4 mt-5  pl-5 ml-5 text-muted">
 				{#if steps.includes(1)}
 					<h3 class="pt-8">
 						1. <span
