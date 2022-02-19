@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte'
 	import { fade } from 'svelte/transition'
 
-	let steps = [1]
+	let steps
 
 	onMount(() => (steps = [1]))
 
@@ -30,11 +30,9 @@
 	<div class="container px-5 ">
 		<div class="row gx-5 align-text-top">
 			<div class="col-lg-12">
-				<h1 class="display-1 lh-1 mb-3">Three good tings. X <br /> Every day.</h1>
+				<h1 class="display-1 lh-1 mb-3">Three good tings. <br /> Every day.</h1>
 			</div>
 			<div class="col-lg-6 ml-4 mt-5  pl-5 ml-5">
-				<!-- Masthead device mockup feature-->
-
 				{#if steps.includes(1)}
 					<h3 class="pt-8">
 						1. <span
