@@ -1,17 +1,92 @@
-<!-- Mashead header-->
+<script>
+	import { onMount } from 'svelte'
+	import { fade } from 'svelte/transition'
+
+	let firstThing = false
+	let secondThing = false
+	let thirdThing = false
+	let finished = false
+
+	onMount(() => (firstThing = true))
+
+	function typewriter(node, { speed = 1 }) {
+		const valid = node.childNodes.length === 1 && node.childNodes[0].nodeType === Node.TEXT_NODE
+
+		if (!valid) {
+			throw new Error(`This transition only works on elements with a single text node child`)
+		}
+
+		const text = node.textContent
+		const duration = text.length / (speed * 0.01)
+
+		return {
+			duration,
+			tick: (t) => {
+				const i = Math.trunc(text.length * t)
+				node.textContent = text.slice(0, i)
+			}
+		}
+	}
+</script>
+
 <header class="masthead">
-	<div class="container px-5">
-		<div class="row gx-5 align-items-center">
+	<div class="container px-5 ">
+		<div class="row gx-5 align-text-top">
+			<div class="col-lg-12">
+				<h1 class="display-1 lh-1 mb-3">Three good tings. <br /> Every day.</h1>
+			</div>
+			<div class="col-lg-6 ml-4 mt-5  pl-5 ml-5">
+				<!-- Masthead device mockup feature-->
+
+				{#if firstThing}
+					<h3 class="pt-8">
+						1. <span in:typewriter on:introend={() => setTimeout(() => (secondThing = true), 1200)}
+							>Had a good laugh with Sue when we met for coffee this morning.</span
+						>
+					</h3>
+				{/if}
+				{#if secondThing}
+					<h3>
+						2. <span in:typewriter on:introend={() => setTimeout(() => (thirdThing = true), 1200)}
+							>Got a solid bit of writing done today.</span
+						>
+					</h3>
+				{/if}
+				{#if thirdThing}
+					<h3>
+						3. <span in:typewriter on:introend={() => setTimeout(() => (finished = true), 400)}
+							>The sunset was beautiful, pink and crazy.</span
+						>
+					</h3>
+				{/if}
+				{#if finished}
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="60"
+						height="60"
+						fill="green"
+						class="bi bi-check-lg"
+						viewBox="0 0 16 16"
+						in:fade
+					>
+						<path
+							d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"
+						/>
+					</svg>
+				{/if}
+			</div>
 			<div class="col-lg-6">
 				<!-- Mashead text and app badges-->
 				<div class="mb-5 mb-lg-0 text-center text-lg-start">
-					<h1 class="display-1 lh-1 mb-3">Three good tings. Every day.</h1>
-					<p class="lead fw-normal text-muted mb-5" />
+					<p class="mt-5">
+						Research has shown that writing down three good things that happend to you throughout
+						the day can reduce depression and increase happiness and wellbeing.
+					</p>
 					Each night, at the end of the day:
 					<ul>
 						<li>Think about three good things that happened to you during the day.</li>
 						<li>Reflect on your role in why they happened.</li>
-						<li>Write them down in detail, including where you were and sensory detail.</li>
+						<li>Write them down, including where you were and sensory detail.</li>
 					</ul>
 					<p>
 						The good thing can be big or small, something that brought you joy, something nice you
@@ -20,13 +95,10 @@
 						in you. Also consider why it happened, and your role in making it happen.
 					</p>
 					<p>
-						Try to do the excercise at approxiamtely the same time every night. This app will help
-						you keep track of these things that made you happy.
+						Try to do the excercise at approxiamtely the same time every night. This app helps you
+						keep a record and make a habit of writing down the things that brought you joy.
 					</p>
-					<p>
-						The practice was developed by Martin Seligman. Research has shown that it is effective
-						in increasing happiness and wellbeing and reducing depression.
-					</p>
+					<p>The practice was developed by Martin Seligman.</p>
 					<p>References:</p>
 					<ol>
 						<li>
@@ -46,16 +118,6 @@
 						</li>
 					</ol>
 				</div>
-			</div>
-			<div class="col-lg-6 ml-4">
-				<!-- Masthead device mockup feature-->
-				<h3 class="ml-4">1. Had had a coffee with Sue on the sidewalk in the sun.</h3>
-				<p>HALLO</p>
-				<p>HALLO</p>
-				<p>HALLO</p>
-				<p>HALLO</p>
-				<p>HALLO</p>
-				<p>HALLO</p>
 			</div>
 		</div>
 	</div>

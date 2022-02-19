@@ -15,7 +15,7 @@
 	async function signOut() {
 		await supabase.auth.signOut()
 		$session = null
-		goto('/')
+		goto('/auth/signin')
 	}
 </script>
 
