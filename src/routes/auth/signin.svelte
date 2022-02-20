@@ -3,6 +3,7 @@
 	import { goto } from '$app/navigation'
 
 	let email, password
+	let errorMessage
 
 	async function signIn() {
 		const { session: userSession, error } = await supabase.auth.signIn({
@@ -10,7 +11,7 @@
 			password
 		})
 		if (error) {
-			alert(error.message)
+			errorMessage = error.message
 		}
 		if (userSession) {
 			goto('/things')
@@ -32,6 +33,11 @@
 			<div style="padding-top:30px" class="panel-body">
 				<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12" />
 
+				{#if errorMessage}
+					<div class="alert alert-danger" role="alert">
+						{errorMessage}
+					</div>
+				{/if}
 				<form id="loginform" class="form-horizontal" role="form" on:submit|preventDefault={signIn}>
 					<div style="margin-bottom: 25px" class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-user" /></span>
@@ -68,7 +74,9 @@
 			</div>
 		</div>
 	</div>
-	<a href="/auth/signup">Don't have an account?</a>
-	<br />
-	<a href="/magiclink">Want a magic link?</a>
+	<div class="mt-4">
+		<a href="/auth/signup">Don't have an account?</a>
+		<br />
+		<a href="/magiclink">Want a magic link?</a>
+	</div>
 </div>

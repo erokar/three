@@ -78,73 +78,75 @@
 	}
 </script>
 
-<div class="container pt-4">
-	<div class="d-flex justify-content-center">
-		{#await entriesPromise}
-			Loading...
-		{:then entryList}
-			<div class="w-50">
-				<br />
-				<h2>Today</h2>
-				{#if !todaysEntrySubmitted}
-					<div class="input-group ">
-						<input
-							bind:value={thing}
-							id="newThing"
-							type="text"
-							class="form-control"
-							on:keydown={(event) => (event.key === 'Enter' ? addThing() : null)}
-						/>
-						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" on:click={addThing}>Add</button>
-						</div>
-					</div>
-				{/if}
-
-				{#each todaysEntry as thing, i}
-					<div in:fade class="lead fw-normal text-muted">
-						{i + 1}. {thing}
-					</div>
-				{/each}
-
-				{#if todaysEntrySubmitted}
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="60"
-						height="60"
-						fill="green"
-						class="bi bi-check-lg"
-						viewBox="0 0 16 16"
-						in:fade
-					>
-						<path
-							d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"
-						/>
-					</svg>
-				{/if}
-
-				{#if entryList.length > 0}
-					<br /><br />
-					<hr />
+<div class="masthead vh-100">
+	<div class="container">
+		<div class="d-flex justify-content-center">
+			{#await entriesPromise}
+				Loading...
+			{:then entryList}
+				<div class="w-50">
 					<br />
-				{/if}
+					<h2>Today</h2>
+					{#if !todaysEntrySubmitted}
+						<div class="input-group mb-4">
+							<input
+								bind:value={thing}
+								id="newThing"
+								type="text"
+								class="form-control"
+								on:keydown={(event) => (event.key === 'Enter' ? addThing() : null)}
+							/>
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" on:click={addThing}>Add</button>
+							</div>
+						</div>
+					{/if}
 
-				{#each entryList as entry, i}
-					<div class="mb-4">
-						<h5>
-							{new Date(entry.created_at).toLocaleDateString('en-us', {
-								weekday: 'long',
-								year: 'numeric',
-								month: 'short',
-								day: 'numeric'
-							})}
-						</h5>
-						{#each entry.entry as thing, i}
-							<div class="lead fw-normal text-muted">{i + 1}. {thing}</div>
-						{/each}
-					</div>
-				{/each}
-			</div>
-		{/await}
+					{#each todaysEntry as thing, i}
+						<div in:fade class="lead fw-normal text-muted">
+							{i + 1}. {thing}
+						</div>
+					{/each}
+
+					{#if todaysEntrySubmitted}
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="60"
+							height="60"
+							fill="green"
+							class="bi bi-check-lg"
+							viewBox="0 0 16 16"
+							in:fade
+						>
+							<path
+								d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"
+							/>
+						</svg>
+					{/if}
+
+					{#if entryList.length > 0}
+						<br /><br />
+						<hr />
+						<br />
+					{/if}
+
+					{#each entryList as entry, i}
+						<div class="mb-4">
+							<h5>
+								{new Date(entry.created_at).toLocaleDateString('en-us', {
+									weekday: 'long',
+									year: 'numeric',
+									month: 'short',
+									day: 'numeric'
+								})}
+							</h5>
+							{#each entry.entry as thing, i}
+								<div class="lead fw-normal text-muted">{i + 1}. {thing}</div>
+							{/each}
+						</div>
+					{/each}
+				</div>
+			{/await}
+		</div>
 	</div>
 </div>
