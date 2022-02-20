@@ -5,11 +5,7 @@
 	let email, password
 
 	async function signIn() {
-		const {
-			user,
-			session: userSession,
-			error
-		} = await supabase.auth.signIn({
+		const { session: userSession, error } = await supabase.auth.signIn({
 			email,
 			password
 		})

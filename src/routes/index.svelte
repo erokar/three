@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte'
 	import { fade } from 'svelte/transition'
 
@@ -6,19 +6,13 @@
 
 	onMount(() => (steps = [1]))
 
-	function typewriter(node, { speed = 1 }) {
-		const valid = node.childNodes.length === 1 && node.childNodes[0].nodeType === Node.TEXT_NODE
-
-		if (!valid) {
-			throw new Error(`This transition only works on elements with a single text node child`)
-		}
-
+	function typewriter(node: HTMLSpanElement, { speed = 1 }) {
 		const text = node.textContent
 		const duration = text.length / (speed * 0.02)
 
 		return {
 			duration,
-			tick: (t) => {
+			tick: (t: number) => {
 				const i = Math.trunc(text.length * t)
 				node.textContent = text.slice(0, i)
 			}
@@ -38,7 +32,7 @@
 						1. <span
 							in:typewriter
 							on:introend={() => setTimeout(() => (steps = [...steps, 2]), 1200)}
-							>Had a good laugh with Sue when we met for coffee this morning.</span
+							>Had a belly laugh with Sue when we met for coffee this morning.</span
 						>
 					</h3>
 				{/if}
@@ -78,7 +72,7 @@
 			</div>
 			<div class="col-lg-6">
 				<!-- Mashead text and app badges-->
-				<div class="mb-5 mb-lg-0 text-center text-lg-start">
+				<div class="mb-5 mb-lg-0 text-lg-start">
 					<p class="mt-5">
 						Research has shown that writing down three good things that happend to you throughout
 						the day can reduce depression and increase happiness and wellbeing.
