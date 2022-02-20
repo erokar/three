@@ -1,7 +1,22 @@
+<script lang="ts" context="module">
+	export async function load({ url, session }) {
+		if (url.hash && url.hash.includes('type=recovery')) {
+			const paramObject = new URLSearchParams(url.hash.substring(1))
+			console.log('access_token: ', paramObject.get('access_token'))
+			session['access_token'] = paramObject.get('access_token')
+			return {
+				status: 302,
+				redirect: `/auth/changepassword`
+			}
+		}
+		return {}
+	}
+</script>
+
 <script lang="ts">
 	import '../app.css'
 	import supabase from '$lib/db'
-	import { session } from '$app/stores'
+	import { session, page } from '$app/stores'
 	import { browser } from '$app/env'
 	import { goto } from '$app/navigation'
 
@@ -53,6 +68,7 @@
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><a on:click={signOut} class="dropdown-item" href="">Sign out</a></li>
+							<li><a class="dropdown-item" href="/account">Account</a></li>
 						</ul>
 					</li>
 				{:else}
