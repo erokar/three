@@ -80,11 +80,13 @@
 
 <div class="masthead vh-100">
 	<div class="container">
-		<div class="d-flex justify-content-center">
+		<div class="row d-flex justify-content-center">
 			{#await entriesPromise}
-				Loading...
+				<div class="col-md-12 text-center">
+					<span class="spinner-border spinner-border-lg" role="status" aria-hidden="true" />
+				</div>
 			{:then entryList}
-				<div class="w-50">
+				<div class="col-md-6 col-sm-12">
 					<br />
 					<h2>Today</h2>
 					{#if !todaysEntrySubmitted}
