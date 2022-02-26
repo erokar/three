@@ -22,6 +22,8 @@
 			return
 		}
 		entriesPromise = getEntries()
+		// Ensure we fetch entries if webpage is left open and gets focus agian
+		window.onfocus = () => (entriesPromise = getEntries())
 	})
 
 	async function getEntries() {

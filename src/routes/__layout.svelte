@@ -2,7 +2,6 @@
 	export async function load({ url, session }) {
 		if (url.hash && url.hash.includes('type=recovery')) {
 			const paramObject = new URLSearchParams(url.hash.substring(1))
-			console.log('access_token: ', paramObject.get('access_token'))
 			session['access_token'] = paramObject.get('access_token')
 			return {
 				status: 302,
@@ -86,7 +85,8 @@
 <div><slot /></div>
 
 <style>
-	.brand-color {
-		color: #d62929;
+	.brand-color,
+	.brand-color:hover {
+		color: #d62929 !important;
 	}
 </style>

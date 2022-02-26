@@ -31,7 +31,7 @@
 					<h3 class="pt-8">
 						1. <span
 							in:typewriter
-							on:introend={() => setTimeout(() => (steps = [...steps, 2]), 1200)}
+							on:introend={() => setTimeout(() => (steps = [...steps, 2]), 900)}
 							>Had a belly laugh with Sue when we met for coffee this morning.</span
 						>
 					</h3>
@@ -40,7 +40,7 @@
 					<h3>
 						2. <span
 							in:typewriter
-							on:introend={() => setTimeout(() => (steps = [...steps, 3]), 1200)}
+							on:introend={() => setTimeout(() => (steps = [...steps, 3]), 900)}
 							>Got a solid bit of writing done today.</span
 						>
 					</h3>
@@ -68,6 +68,13 @@
 							d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"
 						/>
 					</svg>
+					<div>
+						<a
+							in:fade={{ duration: 2000 }}
+							class="btn btn-primary btn-lg mt-4 w-100"
+							href="/auth/signup">Sign up</a
+						>
+					</div>
 				{/if}
 			</div>
 			<div class="col-lg-6">
