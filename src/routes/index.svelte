@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
 	import { fade } from 'svelte/transition'
+	import { session } from '$app/stores'
 
 	let steps = [1]
 
@@ -68,13 +69,15 @@
 							d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"
 						/>
 					</svg>
-					<div>
-						<a
-							in:fade={{ duration: 2000 }}
-							class="btn btn-primary btn-lg mt-4 w-100"
-							href="/auth/signup">Sign up</a
-						>
-					</div>
+					{#if !$session}
+						<div>
+							<a
+								in:fade={{ duration: 2000 }}
+								class="btn btn-primary btn-lg mt-4 w-100"
+								href="/auth/signup">Sign up</a
+							>
+						</div>
+					{/if}
 				{/if}
 			</div>
 			<div class="col-lg-6">
