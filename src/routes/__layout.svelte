@@ -15,7 +15,7 @@
 <script lang="ts">
 	import '../app.css'
 	import supabase from '$lib/db'
-	import { session, page } from '$app/stores'
+	import { session } from '$app/stores'
 	import { browser } from '$app/env'
 	import { goto } from '$app/navigation'
 

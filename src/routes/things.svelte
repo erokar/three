@@ -80,7 +80,7 @@
 	}
 </script>
 
-<div class="masthead vh-100">
+<div class="masthead">
 	<div class="container">
 		<div class="row d-flex justify-content-center">
 			{#await entriesPromise}
