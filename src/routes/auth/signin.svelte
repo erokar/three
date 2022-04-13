@@ -77,6 +77,6 @@
 	<div class="mt-4">
 		<a href="/auth/signup">Don't have an account?</a>
 		<br />
-		<a href="/magiclink">Want a magic link?</a>
+		<a href="/auth/magiclink">Want a magic link?</a>
 	</div>
 </div>
