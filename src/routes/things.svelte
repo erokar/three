@@ -33,6 +33,7 @@
 			.order('created_at', { ascending: false })
 		if (error) {
 			console.error('Error getting entries: ', error.message)
+			console.error('Error getting entries: ', error)
 			return
 		}
 		let entries: EntryList = [...data]
