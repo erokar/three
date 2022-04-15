@@ -32,8 +32,11 @@
 			.select('id, created_at, entry')
 			.order('created_at', { ascending: false })
 		if (error) {
+			if (error.message === 'JWT expired') {
+				goto('/auth/signin')
+				return
+			}
 			console.error('Error getting entries: ', error.message)
-			console.error('Error getting entries: ', error)
 			return
 		}
 		let entries: EntryList = [...data]
